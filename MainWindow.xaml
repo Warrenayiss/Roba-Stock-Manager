@@ -1,0 +1,72 @@
+﻿<Window x:Class="Roba_Stock_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Roba_Stock_Manager"
+        ResizeMode="NoResize"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="MainWindow" Height="1024" Width="1440">
+    <Border Background="WhiteSmoke">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TabControl Grid.Row="1" Grid.Column="1">
+                <TabItem>
+                    <TabItem.Header>
+                        <Border Width="409">
+                            <TextBlock 
+                            HorizontalAlignment="Center"
+                        FontSize="20"
+                        Text="Inventory"/>
+                        </Border>
+                    </TabItem.Header>
+
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border Width="408">
+                            <TextBlock 
+                            HorizontalAlignment="Center"
+                        FontSize="20"
+                        Text="Order Order"/>
+                        </Border>
+                    </TabItem.Header>
+
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border Width="408">
+                            <TextBlock 
+                            HorizontalAlignment="Center"
+                        FontSize="20"
+                        Text="History"/>
+                        </Border>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Order History"
+                               HorizontalAlignment="Center"
+                               FontSize="50"
+                               FontWeight="Bold"
+                               Margin="20"/>
+                        <ListView x:Name="lvHistory"
+                          Width="900"
+                          Height="700"/>
+                    </StackPanel>
+
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Border>
+    
+</Window>

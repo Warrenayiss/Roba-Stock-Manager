@@ -11,6 +11,34 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Title="MainWindow" Height="1024" Width="1440">
+
+    <Window.Resources>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        Padding="4,2"
+                        BorderBrush="Transparent" 
+                        BorderThickness="5"
+                        CornerRadius="20" 
+                        Background="Green">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="LightGreen" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Border Background="WhiteSmoke">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -41,6 +69,7 @@
                             Height="850"/>
                     </StackPanel>
                 </TabItem>
+                <!--Order Product tab-->
                 <TabItem>
                     <TabItem.Header>
                         <Border Width="408">
@@ -50,8 +79,84 @@
                         Text="Order Product"/>
                         </Border>
                     </TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock 
+                                    FontSize="40"
+                                    Margin="10"
+                                    TextDecorations="Underline"
+                                    Text="Order Number"/>
+                                <TextBlock 
+                                    FontWeight="Bold"
+                                    Margin="10"
+                                    FontSize="40"
+                                    Text="1325"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    FontSize="40"
+                                    Margin="10"
+                                    TextDecorations="Underline"
+                                    Text="PROVIDER:"
+                                    FontWeight="Bold"/>
+                                <ComboBox 
+                                    Margin="10"
+                                    Width="420"
+                                    x:Name="cbProvider">
+                                    <ComboBoxItem
+                                        FontSize="25">Provider1</ComboBoxItem>
+                                    <ComboBoxItem
+                                        FontSize="25">Provider2</ComboBoxItem>
+                                    <ComboBoxItem
+                                        FontSize="25">Provider3</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    FontSize="40"
+                                    Margin="10"
+                                    TextDecorations="Underline"
+                                    Text="DATE:"
+                                    FontWeight="Bold"/>
+                                <DatePicker 
+                                    HorizontalContentAlignment="Center"
+                                    SelectedDate="01-01-21"
+                                    SelectedDateFormat="Long"
+                                    BorderBrush="WhiteSmoke"
+                                    FontSize="38"
+                                    Width="420"
+                                    Margin="10" />
+                            </StackPanel>
+                            
+                        </StackPanel>
+
+                        <Button 
+                            Grid.Column="1"
+                            Height="50"
+                            Width="250"
+                            HorizontalAlignment="Right"
+                            FontSize="28"
+                            Style="{StaticResource MyButtonStyle}"
+                            Content="CONFIRM ORDER"
+                            x:Name="confirmOrderbtn"/>
+
+                    </Grid>
 
                 </TabItem>
+                <!--Rgister Delivery Tab-->
                 <TabItem>
                     <TabItem.Header>
                         <Border Width="408">

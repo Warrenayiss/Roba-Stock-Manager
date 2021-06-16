@@ -7,6 +7,8 @@
         ResizeMode="NoResize"
         mc:Ignorable="d"
         AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Title="MainWindow" Height="1024" Width="1440">
     <Border Background="WhiteSmoke">
@@ -28,40 +30,43 @@
                             <TextBlock 
                             HorizontalAlignment="Center"
                         FontSize="20"
-                        Text="Inventory"/>
-                        </Border>
-                    </TabItem.Header>
-
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <Border Width="408">
-                            <TextBlock 
-                            HorizontalAlignment="Center"
-                        FontSize="20"
-                        Text="Order Order"/>
-                        </Border>
-                    </TabItem.Header>
-
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <Border Width="408">
-                            <TextBlock 
-                            HorizontalAlignment="Center"
-                        FontSize="20"
-                        Text="History"/>
+                        Text="Product Inventory"/>
                         </Border>
                     </TabItem.Header>
                     <StackPanel>
-                        <TextBlock Text="Order History"
-                               HorizontalAlignment="Center"
-                               FontSize="50"
-                               FontWeight="Bold"
-                               Margin="20"/>
-                        <ListView x:Name="lvHistory"
-                          Width="900"
-                          Height="700"/>
+                        <ListView 
+                            x:Name="lvInventory"
+                            Margin="30"
+                            Width="900"
+                            Height="850"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border Width="408">
+                            <TextBlock 
+                            HorizontalAlignment="Center"
+                        FontSize="20"
+                        Text="Order Product"/>
+                        </Border>
+                    </TabItem.Header>
+
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border Width="408">
+                            <TextBlock 
+                            HorizontalAlignment="Center"
+                        FontSize="20"
+                        Text="Register Delivery"/>
+                        </Border>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <ListView 
+                            x:Name="lvHistory"
+                            Margin="30"
+                            Width="900"
+                            Height="850"/>
                     </StackPanel>
 
                 </TabItem>

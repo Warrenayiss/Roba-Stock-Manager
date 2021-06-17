@@ -25,6 +25,9 @@ namespace Roba_Stock_Manager
 	public partial class MainWindow : Window
 	{
 		SqlConnection sqlConnection;
+		List<Product> productsToOrder = new List<Product>();
+		DataTable InventoryTb = new DataTable();
+
 
 		public MainWindow()
 		{
@@ -35,9 +38,10 @@ namespace Roba_Stock_Manager
 
 			sqlConnection = new SqlConnection(connectionString);
 
-
+			
 			ShowInventory();
-
+			ShowProductCb();
+			ShowProvider();
 		}
 
 		private void ShowInventory()
@@ -49,13 +53,34 @@ namespace Roba_Stock_Manager
 
 				using (sqlDataAdapter)
 				{
-					DataTable InventoryTb = new DataTable();
 
 					sqlDataAdapter.Fill(InventoryTb);
+				}
+				lvInventory.ItemsSource = InventoryTb.DefaultView;
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.ToString());
+			}
+		}
+
+		private void ShowProductCb()
+		{
+			try
+			{
+				string query = "select Name,Quantity  from Product";
+				SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+
+				using (sqlDataAdapter)
+				{
+					DataTable productTb = new DataTable();
+
+					sqlDataAdapter.Fill(productTb);
 					//TODO: Showing two column not working
-					lvInventory.DisplayMemberPath = "Name" + "Quantity";
-					lvInventory.SelectedValuePath = "Id";
-					lvInventory.ItemsSource = InventoryTb.DefaultView;
+					cbProduct.DisplayMemberPath = "Name";
+					cbProduct.SelectedValuePath = "Id";
+					cbProvider.FontSize = 20;
+					cbProduct.ItemsSource = productTb.DefaultView;
 				}
 			}
 			catch (Exception e)
@@ -64,5 +89,40 @@ namespace Roba_Stock_Manager
 			}
 		}
 
+		private void ShowProvider()
+		{
+			try
+			{
+				string query = "select *  from Provider";
+				SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+
+				using (sqlDataAdapter)
+				{
+					DataTable providerTb = new DataTable();
+
+					sqlDataAdapter.Fill(providerTb);
+
+					cbProvider.DisplayMemberPath = "Name";
+					cbProvider.SelectedValuePath = "Id";
+					cbProvider.ItemsSource = providerTb.DefaultView;
+				}
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.ToString());
+			}
+		}
+
+		private void AddProduct_Click(object sender, RoutedEventArgs e)
+		{
+			string productName = cbProduct.SelectedItem.ToString();
+			string productQuantity = tbQuantity.Text;
+			int quantity = Int32.Parse(productQuantity);
+			productsToOrder.Add(
+				new Product(productName, quantity)
+			);
+			tbQuantity.Text = "";
+
+		}
 	}
 }

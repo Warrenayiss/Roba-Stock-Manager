@@ -92,7 +92,19 @@
                             x:Name="lvInventory"
                             Margin="30"
                             Width="900"
-                            Height="840"/>
+                            SelectedValuePath="Id"
+                            ItemsSource="{Binding inventoryTb.defaultView}"
+                            Height="840">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding Quantity}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
                     </StackPanel>
                 </TabItem>
                 <!--Order Product tab-->
@@ -140,13 +152,15 @@
                                 <ComboBox 
                                     Margin="10"
                                     Width="420"
+                                    FontSize="30"
                                     x:Name="cbProvider">
-                                    <ComboBoxItem
-                                        FontSize="25">Provider1</ComboBoxItem>
-                                    <ComboBoxItem
-                                        FontSize="25">Provider2</ComboBoxItem>
-                                    <ComboBoxItem
-                                        FontSize="25">Provider3</ComboBoxItem>
+                                    <!--<ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                --><!--<TextBlock Text="{Binding Name}" />--><!--
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>-->
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel
@@ -213,15 +227,10 @@
                                     Text="PRODUCT:"/>
                             <ComboBox
                                 Margin="10,25,0,50"
+                                Name="cbProduct"
+                                FontSize="20"
                                 Width="250">
-                                <ComboBoxItem
-                                    FontSize="25">Product1</ComboBoxItem>
-                                <ComboBoxItem
-                                    FontSize="25">Product1</ComboBoxItem>
-                                <ComboBoxItem
-                                    FontSize="25">Product1</ComboBoxItem>
-                                <ComboBoxItem
-                                    FontSize="25">Product1</ComboBoxItem>
+                                
                             </ComboBox>
                             <TextBlock 
                                     FontSize="40"
@@ -236,6 +245,7 @@
                         <Button
                             Grid.Column="1"
                             Grid.Row="3"
+                            Click="AddProduct_Click"
                             Style="{StaticResource AddProductBtnStyle}"
                             FontSize="30"
                             Height="75"

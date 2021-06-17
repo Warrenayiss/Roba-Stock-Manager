@@ -92,7 +92,7 @@
                             x:Name="lvInventory"
                             Margin="30"
                             Width="900"
-                            Height="850"/>
+                            Height="840"/>
                     </StackPanel>
                 </TabItem>
                 <!--Order Product tab-->
@@ -259,7 +259,7 @@
                             x:Name="lvHistory"
                             Margin="30"
                             Width="900"
-                            Height="850"/>
+                            Height="840"/>
                     </StackPanel>
 
                 </TabItem>

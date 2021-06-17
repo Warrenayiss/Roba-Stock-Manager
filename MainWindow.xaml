@@ -212,6 +212,7 @@
                             Background="#F4938C"
                             Margin="150,50,40,0">
                             <ListView 
+                                ItemsSource="{Binding productsToOrder}"
                                 x:Name="lvProductToOrder"
                             Grid.Row="1"
                                 Background="pink"
@@ -227,6 +228,7 @@
                                     TextDecorations="Underline"
                                     Text="PRICE:"/>
                             <TextBlock 
+                                    x:Name="tbPriceOfOrder"
                                     FontWeight="ExtraLight"
                                     Margin="10"
                                     FontSize="40"

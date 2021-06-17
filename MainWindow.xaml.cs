@@ -122,6 +122,7 @@ namespace Roba_Stock_Manager
 				new Product(productName, quantity)
 			);
 			tbQuantity.Text = "";
+			cbProduct.SelectedIndex = -1;
 
 		}
 	}

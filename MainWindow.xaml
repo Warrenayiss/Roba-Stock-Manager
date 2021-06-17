@@ -65,7 +65,7 @@
     </Window.Resources>
     <!--Window Ressource Style-->
     
-    <Border Background="WhiteSmoke">
+    <Border Background="Transparent">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -80,10 +80,10 @@
             <TabControl Grid.Row="1" Grid.Column="1" Background="#FFD7D4">
                 <TabItem>
                     <TabItem.Header>
-                        <Border Width="409">
+                        <Border Width="393" Margin="10">
                             <TextBlock 
                             HorizontalAlignment="Center"
-                        FontSize="20"
+                        FontSize="30"
                         Text="Product Inventory"/>
                         </Border>
                     </TabItem.Header>
@@ -98,10 +98,10 @@
                 <!--Order Product tab-->
                 <TabItem>
                     <TabItem.Header>
-                        <Border Width="408">
+                        <Border Width="390" Margin="10">
                             <TextBlock 
                             HorizontalAlignment="Center"
-                        FontSize="20"
+                        FontSize="30"
                         Text="Order Product"/>
                         </Border>
                     </TabItem.Header>
@@ -247,10 +247,10 @@
                 <!--Rgister Delivery Tab-->
                 <TabItem>
                     <TabItem.Header>
-                        <Border Width="408">
+                        <Border Width="388" Margin="10">
                             <TextBlock 
                             HorizontalAlignment="Center"
-                        FontSize="20"
+                        FontSize="30"
                         Text="Register Delivery"/>
                         </Border>
                     </TabItem.Header>

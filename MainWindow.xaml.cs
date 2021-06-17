@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,19 @@ namespace Roba_Stock_Manager
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		SqlConnection sqlConnection;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			string connectionString = ConfigurationManager.ConnectionStrings["Roba_Stock_Manager.Properties." +
+				"Settings.RobaDbConnectionString"].ConnectionString;
+
+			sqlConnection = new SqlConnection(connectionString);
+
 		}
+
+		
 	}
 }

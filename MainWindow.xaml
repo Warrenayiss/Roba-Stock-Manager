@@ -87,7 +87,27 @@
                         Text="Product Inventory"/>
                         </Border>
                     </TabItem.Header>
-                    <StackPanel>
+                    <StackPanel Margin="20">
+                        <TextBlock Text="Inventory"
+                                   FontWeight="Black"
+                                   HorizontalAlignment="Center"
+                                   FontSize="40"/>
+                        <Grid Width="900">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="1.3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                FontWeight="DemiBold"
+                                Text="Products"
+                                       FontSize="25"/>
+                            <TextBlock
+                                Grid.Column="1"
+                                Text="Quantity"
+                                FontWeight="DemiBold"
+                                FontSize="25"/>
+                        </Grid>
                         <ListView 
                             x:Name="lvInventory"
                             Margin="30"
@@ -146,7 +166,8 @@
                                     Margin="10"
                                     TextDecorations="Underline"
                                     Text="Order Number"/>
-                                <TextBlock 
+                                <TextBlock
+                                    x:Name="tbOrderNumber"
                                     FontWeight="Bold"
                                     Margin="10"
                                     FontSize="40"
@@ -216,7 +237,26 @@
                                 x:Name="lvProductToOrder"
                             Grid.Row="1"
                                 Background="pink"
-                                Margin="10"/>
+                                Margin="10">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="10*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                Text="{Binding productName}"
+                                                FontSize="20"/>
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Text="{Binding quantity}"
+                                                FontSize="20" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Border>
                         <StackPanel
                             Orientation="Horizontal"

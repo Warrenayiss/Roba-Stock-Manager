@@ -25,7 +25,7 @@ namespace Roba_Stock_Manager
 	public partial class MainWindow : Window
 	{
 		SqlConnection sqlConnection;
-		List<Product> productsToOrder = new List<Product>();
+		DataTable productsToOrder = new DataTable();
 		DataTable InventoryTb = new DataTable();
 
 
@@ -38,6 +38,9 @@ namespace Roba_Stock_Manager
 
 			sqlConnection = new SqlConnection(connectionString);
 
+			//productsToOrder.Add(
+			//	new Product ("Pen", 20)
+			//	);
 			
 			ShowInventory();
 			ShowProductCb();
@@ -115,14 +118,15 @@ namespace Roba_Stock_Manager
 
 		private void AddProduct_Click(object sender, RoutedEventArgs e)
 		{
-			string productName = cbProduct.SelectedItem.ToString();
-			string productQuantity = tbQuantity.Text;
-			int quantity = Int32.Parse(productQuantity);
-			productsToOrder.Add(
-				new Product(productName, quantity)
-			);
-			tbQuantity.Text = "";
-			cbProduct.SelectedIndex = -1;
+			//TODO: Emplementing the AddProduct Click
+			//string productName = cbProduct.SelectedItem.ToString();
+			//string productQuantity = tbQuantity.Text;
+			//int quantity = Int32.Parse(productQuantity);
+			//productsToOrder.Add(
+			//	new Product(productName, quantity)
+			//);
+			//tbQuantity.Text = "";
+			//cbProduct.SelectedIndex = -1;
 
 		}
 	}

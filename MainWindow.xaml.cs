@@ -34,8 +34,34 @@ namespace Roba_Stock_Manager
 
 			sqlConnection = new SqlConnection(connectionString);
 
+
+			ShowInventory();
+
 		}
 
-		
+		private void ShowInventory()
+		{
+			try
+			{
+				string query = "select *  from Product";
+				SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+
+				using (sqlDataAdapter)
+				{
+					DataTable InventoryTb = new DataTable();
+
+					sqlDataAdapter.Fill(InventoryTb);
+
+					lvInventory.DisplayMemberPath = "Name";
+					lvInventory.SelectedValuePath = "Id";
+					lvInventory.ItemsSource = InventoryTb.DefaultView;
+				}
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.ToString());
+			}
+		}
+
 	}
 }

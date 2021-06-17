@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Roba_Stock_Manager.Classes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -43,7 +44,7 @@ namespace Roba_Stock_Manager
 		{
 			try
 			{
-				string query = "select *  from Product";
+				string query = "select Name,Quantity  from Product";
 				SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
 
 				using (sqlDataAdapter)
@@ -51,8 +52,8 @@ namespace Roba_Stock_Manager
 					DataTable InventoryTb = new DataTable();
 
 					sqlDataAdapter.Fill(InventoryTb);
-
-					lvInventory.DisplayMemberPath = "Name";
+					//TODO: Showing two column not working
+					lvInventory.DisplayMemberPath = "Name" + "Quantity";
 					lvInventory.SelectedValuePath = "Id";
 					lvInventory.ItemsSource = InventoryTb.DefaultView;
 				}

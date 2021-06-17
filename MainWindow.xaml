@@ -80,7 +80,7 @@
             <TabControl Grid.Row="1" Grid.Column="1" Background="#FFD7D4">
                 <TabItem>
                     <TabItem.Header>
-                        <Border Width="393" Margin="10">
+                        <Border Width="390">
                             <TextBlock 
                             HorizontalAlignment="Center"
                         FontSize="30"
@@ -98,7 +98,7 @@
                 <!--Order Product tab-->
                 <TabItem>
                     <TabItem.Header>
-                        <Border Width="390" Margin="10">
+                        <Border Width="390">
                             <TextBlock 
                             HorizontalAlignment="Center"
                         FontSize="30"
@@ -247,7 +247,7 @@
                 <!--Rgister Delivery Tab-->
                 <TabItem>
                     <TabItem.Header>
-                        <Border Width="388" Margin="10">
+                        <Border Width="390">
                             <TextBlock 
                             HorizontalAlignment="Center"
                         FontSize="30"
@@ -259,7 +259,22 @@
                             x:Name="lvHistory"
                             Margin="30"
                             Width="900"
-                            Height="840"/>
+                            Height="840">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="20"
+                                            FontSize="18"
+                                            Text="{Binding Path=Name}"/>
+                                        <TextBlock
+                                            FontSize="18"
+                                            Margin="20"
+                                            Text="{Binding Path=Quantity}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
 
                 </TabItem>

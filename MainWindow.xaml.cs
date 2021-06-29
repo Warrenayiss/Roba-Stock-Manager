@@ -23,6 +23,10 @@ namespace Roba_Stock_Manager
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
+
+	///TODO: Make the tbPriceOfOrder textblock show the price of the whole order
+	///Method1?: Query each orderPrice of the list and return the sum
+	///The method should be called after addProduct
 	public partial class MainWindow : Window
 	{
 		SqlConnection sqlConnection;
@@ -80,7 +84,6 @@ namespace Roba_Stock_Manager
 					DataTable productTb = new DataTable();
 
 					sqlDataAdapter.Fill(productTb);
-					//TODO: Showing two column not working
 					cbProduct.DisplayMemberPath = "Name";
 					cbProduct.SelectedValuePath = "Id";
 					cbProvider.FontSize = 20;
@@ -119,7 +122,6 @@ namespace Roba_Stock_Manager
 
 		private void AddProduct_Click(object sender, RoutedEventArgs e)
 		{
-			//TODO: Emplementing the AddProduct Click
 			DataRowView drv = (DataRowView)cbProduct.SelectedItem;
 			productName = drv["Name"].ToString();
 			string productQuantity = tbQuantity.Text;
@@ -134,13 +136,13 @@ namespace Roba_Stock_Manager
 
 		}
 
-		private void cbProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (cbProduct.SelectedItem != null)
-			{
+		//TODO: Implement Confirm Order button
 
-			}
-		}
+		//TODO: Make the Order Number textblock dynamic
+
+		//TODO: Bind Register Delevery
+
+		//TODO: Show new window with detail of the order of selectedItem of lvHistory
 
 	}
 }

@@ -158,8 +158,13 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="0">
+                        <Border  
+                            CornerRadius="20,0,0,20"
+                            Margin="10,10,0,10"
+                            Background="#efbbcc">
+                            <StackPanel Grid.Row="0" Grid.Column="0">
                             <StackPanel Orientation="Horizontal">
+                                
                                 <TextBlock 
                                     FontSize="40"
                                     Margin="10"
@@ -213,9 +218,14 @@
                             </StackPanel>
                             
                         </StackPanel>
-
-                        <Button 
-                            Grid.Column="1"
+                        </Border>
+                        <Border
+                            Background="#efbbcc"
+                            CornerRadius="0,20,20,0"
+                            Margin="0,10,10,10"
+                            Grid.Column="1">
+                            <Button 
+                            
                             Height="70"
                             Width="260"
                             FontWeight="Bold"
@@ -224,7 +234,9 @@
                             Style="{StaticResource ConfirmBtnStyle}"
                             Content="CONFIRM ORDER"
                             x:Name="confirmOrderbtn"/>
-
+                        </Border>
+                        
+    
 
                         <Border
                             Grid.Row="1"
@@ -234,7 +246,7 @@
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="25" 
-                                               Margin="0,0,100,0"
+                                               Margin="15,0,100,0"
                                                Text="Product Name"/>
                                     <TextBlock FontSize="25" 
                                                Margin="0,0,100,0"
@@ -283,52 +295,65 @@
                             </StackPanel>
                             
                         </Border>
-                        <StackPanel
-                            Orientation="Horizontal"
+                        <Border
+                            Background="#dea5a4"
+                            Margin="10,10,10,-10"
+                            CornerRadius="20,20,0,0"
                             Grid.Row="2"
                             Grid.ColumnSpan="2">
-                            <TextBlock 
+                            <StackPanel
+                            Orientation="Horizontal">
+                                <TextBlock 
                                     FontSize="40"
                                     Margin="10"
                                     TextDecorations="Underline"
                                     Text="PRICE:"/>
-                            <TextBlock 
+                                <TextBlock 
                                     x:Name="tbPriceOfOrder"
                                     FontWeight="ExtraLight"
                                     Margin="10"
                                     FontSize="40"
                                     Text="0 cfa"/>
-                            <TextBlock 
+                                <TextBlock 
                                     FontSize="40"
                                     Margin="15,10,10,10"
                                     TextDecorations="Underline"
                                     Text="PRODUCT:"/>
-                            <ComboBox
+                                <ComboBox
                                 Margin="10,25,0,50"
                                 Name="cbProduct"
                                 SelectedValuePath="Content"
                                 FontSize="20"
                                 Width="250">
-                                
-                            </ComboBox>
-                            <TextBlock 
+
+                                </ComboBox>
+                                <TextBlock 
                                     FontSize="40"
                                     Margin="20,10,10,10"
                                     TextDecorations="Underline"
                                     Text="QUANTITY:"/>
-                            <TextBox x:Name="tbQuantity"
+                                <TextBox x:Name="tbQuantity"
                                      FontSize="25"
                                      Margin="10,25,0,50"
                                      Width="250"/>
-                        </StackPanel>
-                        <Button
-                            Grid.Column="1"
-                            Grid.Row="3"
+                            </StackPanel>
+                        </Border>
+                        <Border 
+                            Background="#dea5a4"
+                            Margin="10,0,10,10"
+                            CornerRadius="0,0,20,20"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="3">
+                            <Button
+                            
                             Click="AddProduct_Click"
                             Style="{StaticResource AddProductBtnStyle}"
                             FontSize="30"
                             Height="75"
                             Width="200">Add Product</Button>
+                        </Border>
+                        
 
                     </Grid>
 

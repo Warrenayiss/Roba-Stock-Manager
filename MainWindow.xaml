@@ -231,28 +231,26 @@
                             CornerRadius="30"
                             Background="#F4938C"
                             Margin="150,50,40,0">
-                            <ListView 
-                                ItemsSource="{Binding productsToOrder}"
+                            <ListView
                                 x:Name="lvProductToOrder"
                             Grid.Row="1"
                                 Background="pink"
                                 Margin="10">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="10*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
+                                        <DockPanel LastChildFill="True">
                                             <TextBlock
-                                                Grid.Column="0"
                                                 Text="{Binding Name}"
-                                                FontSize="20"/>
+                                                DockPanel.Dock="Left"
+                                                HorizontalAlignment="Left"
+                                                Margin="10,0,200,5"
+                                                FontSize="28"/>
                                             <TextBlock
-                                                Grid.Column="1"
+                                                HorizontalAlignment="Right"
                                                 Text="{Binding Quantity}"
-                                                FontSize="20" />
-                                        </Grid>
+                                                Margin="200,0,10,5"
+                                                FontSize="28" />
+                                        </DockPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

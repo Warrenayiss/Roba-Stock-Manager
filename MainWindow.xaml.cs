@@ -41,6 +41,8 @@ namespace Roba_Stock_Manager
 
 			sqlConnection = new SqlConnection(connectionString);
 
+			lvProductToOrder.ItemsSource = productsToOrder;
+
 			ShowInventory();
 			ShowProductCb();
 			ShowProvider();

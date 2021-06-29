@@ -1,6 +1,7 @@
 ﻿using Roba_Stock_Manager.Classes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -25,8 +26,10 @@ namespace Roba_Stock_Manager
 	public partial class MainWindow : Window
 	{
 		SqlConnection sqlConnection;
-		DataTable productsToOrder = new DataTable();
 		DataTable InventoryTb = new DataTable();
+		ObservableCollection<Product> productsToOrder { get; } = new ObservableCollection<Product>();
+		string productName;
+
 
 
 		public MainWindow()
@@ -38,10 +41,6 @@ namespace Roba_Stock_Manager
 
 			sqlConnection = new SqlConnection(connectionString);
 
-			//productsToOrder.Add(
-			//	new Product ("Pen", 20)
-			//	);
-			
 			ShowInventory();
 			ShowProductCb();
 			ShowProvider();
@@ -119,15 +118,27 @@ namespace Roba_Stock_Manager
 		private void AddProduct_Click(object sender, RoutedEventArgs e)
 		{
 			//TODO: Emplementing the AddProduct Click
-			//string productName = cbProduct.SelectedItem.ToString();
-			//string productQuantity = tbQuantity.Text;
-			//int quantity = Int32.Parse(productQuantity);
-			//productsToOrder.Add(
-			//	new Product(productName, quantity)
-			//);
-			//tbQuantity.Text = "";
-			//cbProduct.SelectedIndex = -1;
+			DataRowView drv = (DataRowView)cbProduct.SelectedItem;
+			productName = drv["Name"].ToString();
+			string productQuantity = tbQuantity.Text;
+			int quantity = Int32.Parse(productQuantity);
+
+			productsToOrder.Add(
+				new Product(productName, quantity)
+				);
+
+			tbQuantity.Text = "";
+			cbProduct.SelectedIndex = -1;
 
 		}
+
+		private void cbProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (cbProduct.SelectedItem != null)
+			{
+
+			}
+		}
+
 	}
 }

@@ -110,11 +110,10 @@
                         </Grid>
                         <ListView 
                             x:Name="lvInventory"
-                            Margin="30"
                             Width="900"
                             SelectedValuePath="Id"
                             ItemsSource="{Binding inventoryTb.defaultView}"
-                            Height="840">
+                            Height="780">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Width="850">
@@ -247,11 +246,11 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock
                                                 Grid.Column="0"
-                                                Text="{Binding productName}"
+                                                Text="{Binding Name}"
                                                 FontSize="20"/>
                                             <TextBlock
                                                 Grid.Column="1"
-                                                Text="{Binding quantity}"
+                                                Text="{Binding Quantity}"
                                                 FontSize="20" />
                                         </Grid>
                                     </DataTemplate>
@@ -281,6 +280,8 @@
                             <ComboBox
                                 Margin="10,25,0,50"
                                 Name="cbProduct"
+                                SelectedValuePath="Content"
+                                SelectionChanged="cbProduct_SelectionChanged"
                                 FontSize="20"
                                 Width="250">
                                 

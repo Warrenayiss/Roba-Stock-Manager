@@ -231,29 +231,57 @@
                             CornerRadius="30"
                             Background="#F4938C"
                             Margin="150,50,40,0">
-                            <ListView
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="25" 
+                                               Margin="0,0,100,0"
+                                               Text="Product Name"/>
+                                    <TextBlock FontSize="25" 
+                                               Margin="0,0,100,0"
+                                        Text="Quantity"/>
+                                    <TextBlock FontSize="25" 
+                                               Margin="0,0,50,0"
+                                        Text="Unit Price"/>
+                                    <TextBlock FontSize="25" 
+                                        Text="Total Price"/>
+                                </StackPanel>
+                                <ListView
+                                    Height="350"
                                 x:Name="lvProductToOrder"
-                            Grid.Row="1"
                                 Background="pink"
                                 Margin="10">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <DockPanel LastChildFill="True">
-                                            <TextBlock
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel LastChildFill="True">
+                                                <TextBlock
                                                 Text="{Binding Name}"
                                                 DockPanel.Dock="Left"
+                                                    Width="180"
                                                 HorizontalAlignment="Left"
-                                                Margin="10,0,200,5"
+                                                Margin="10,0,0,5"
                                                 FontSize="28"/>
-                                            <TextBlock
+                                                <TextBlock
                                                 HorizontalAlignment="Right"
                                                 Text="{Binding Quantity}"
-                                                Margin="200,0,10,5"
+                                                Margin="100,0,10,5"
                                                 FontSize="28" />
-                                        </DockPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                                <TextBlock
+                                                HorizontalAlignment="Right"
+                                                Text="{Binding UnitPrice}"
+                                                Margin="100,0,10,5"
+                                                FontSize="28" />
+                                                <TextBlock
+                                                HorizontalAlignment="Right"
+                                                Text="{Binding TotalPrice}"
+                                                Margin="100,0,10,5"
+                                                FontSize="28" />
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                            
                         </Border>
                         <StackPanel
                             Orientation="Horizontal"

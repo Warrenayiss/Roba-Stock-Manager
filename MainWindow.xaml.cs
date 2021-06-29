@@ -24,9 +24,6 @@ namespace Roba_Stock_Manager
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 
-	///TODO: Make the tbPriceOfOrder textblock show the price of the whole order
-	///Method1?: Query each orderPrice of the list and return the sum
-	///The method should be called after addProduct
 	public partial class MainWindow : Window
 	{
 		SqlConnection sqlConnection;
@@ -120,6 +117,7 @@ namespace Roba_Stock_Manager
 			}
 		}
 
+		//TODO: Add price to the productToOrder
 		private void AddProduct_Click(object sender, RoutedEventArgs e)
 		{
 			DataRowView drv = (DataRowView)cbProduct.SelectedItem;
@@ -155,9 +153,9 @@ namespace Roba_Stock_Manager
 					sqlDataReader = sqlCommand.ExecuteReader();
 					while (sqlDataReader.Read())
 					{
-						int productPrice = (int)sqlDataReader["OderPrice"];
-						int finalPrice = productPrice * product.Quantity;
-						orderPrice += finalPrice;
+						product.UnitPrice = (int)sqlDataReader["OderPrice"];
+						product.TotalPrice = product.UnitPrice * product.Quantity;
+						orderPrice += product.TotalPrice;
 					}
 				}
 				finally

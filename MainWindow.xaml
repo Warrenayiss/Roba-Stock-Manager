@@ -269,7 +269,7 @@
                                     FontWeight="ExtraLight"
                                     Margin="10"
                                     FontSize="40"
-                                    Text="13256cfa"/>
+                                    Text="0 cfa"/>
                             <TextBlock 
                                     FontSize="40"
                                     Margin="15,10,10,10"
@@ -279,7 +279,6 @@
                                 Margin="10,25,0,50"
                                 Name="cbProduct"
                                 SelectedValuePath="Content"
-                                SelectionChanged="cbProduct_SelectionChanged"
                                 FontSize="20"
                                 Width="250">
                                 

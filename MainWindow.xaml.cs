@@ -33,7 +33,7 @@ namespace Roba_Stock_Manager
 		DataTable InventoryTb = new DataTable();
 		ObservableCollection<Product> productsToOrder { get; } = new ObservableCollection<Product>();
 		string productName;
-
+		int orderPrice;
 
 
 		public MainWindow()
@@ -133,7 +133,46 @@ namespace Roba_Stock_Manager
 
 			tbQuantity.Text = "";
 			cbProduct.SelectedIndex = -1;
+			ShowPrice();
 
+		}
+
+		private void ShowPrice()
+		{
+			orderPrice = 0;
+			foreach (Product product in productsToOrder)
+			{
+
+				string query = "select OderPrice from Product where Name = @productName";
+				SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+
+				SqlDataReader sqlDataReader = null;
+
+				try
+				{
+					sqlConnection.Open();
+					sqlCommand.Parameters.AddWithValue("@productName", product.Name);
+					sqlDataReader = sqlCommand.ExecuteReader();
+					while (sqlDataReader.Read())
+					{
+						int productPrice = (int)sqlDataReader["OderPrice"];
+						int finalPrice = productPrice * product.Quantity;
+						orderPrice += finalPrice;
+					}
+				}
+				finally
+				{
+					if(sqlDataReader != null)
+					{
+						sqlDataReader.Close();
+					}
+					if(sqlConnection != null)
+					{
+						sqlConnection.Close();
+					}
+				}
+			}
+			tbPriceOfOrder.Text = orderPrice.ToString() + " cfa";
 		}
 
 		//TODO: Implement Confirm Order button

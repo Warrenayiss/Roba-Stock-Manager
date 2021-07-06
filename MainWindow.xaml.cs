@@ -31,6 +31,8 @@ namespace Roba_Stock_Manager
 		ObservableCollection<Product> productsToOrder { get; } = new ObservableCollection<Product>();
 		string productName;
 		int orderPrice;
+		int orderNumber;
+		Int32 orderId = 0;
 
 
 		public MainWindow()
@@ -49,6 +51,7 @@ namespace Roba_Stock_Manager
 			ShowInventory();
 			ShowProductCb();
 			ShowProvider();
+			ShowOrderNumber();
 		}
 
 		private void ShowInventory()
@@ -69,6 +72,35 @@ namespace Roba_Stock_Manager
 			{
 				MessageBox.Show(e.ToString());
 			}
+		}
+
+		private void ShowOrderNumber()
+		{
+			string query = "select Val from Gbvariables where \"Key\" = 'OrderNumber' ";
+			SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+			SqlDataReader sqlDataReader = null;
+
+			try
+			{
+				sqlConnection.Open();
+				sqlDataReader = sqlCommand.ExecuteReader();
+				while (sqlDataReader.Read())
+				{
+					orderNumber = (int)sqlDataReader["Val"];
+				}
+			}
+			finally
+			{
+				if (sqlDataReader != null)
+				{
+					sqlDataReader.Close();
+				}
+				if (sqlConnection != null)
+				{
+					sqlConnection.Close();
+				}
+			}
+			tbOrderNumber.Text = orderNumber.ToString();
 		}
 
 		private void ShowProductCb()
@@ -183,7 +215,6 @@ namespace Roba_Stock_Manager
 			
 			string provider = drv["Name"].ToString();
 			DateTime dateOrder = dpOrder.DisplayDate.Date;
-			Int32 orderId = 0;
 			//Getting providerId
 			int providerId = 0;
 
@@ -253,11 +284,32 @@ namespace Roba_Stock_Manager
 				finally
 				{
 					sqlConnection.Close();
+				}
 			}
+			productsToOrder.Clear();
+			UpdateOrderNumber();
+			ShowOrderNumber();
+		}
+
+		private void UpdateOrderNumber()
+		{
+			orderNumber++;
+			try
+			{
+				string query = "update Gbvariables set Val = @newOrderNumber where \"Key\" ='OrderNumber'";
+				SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+				sqlConnection.Open();
+				sqlCommand.Parameters.AddWithValue("@newOrderNumber", orderNumber);
+				sqlCommand.ExecuteScalar();
 			}
-
-
-
+			catch (Exception err)
+			{
+				MessageBox.Show(err.ToString());
+			}
+			finally
+			{
+				sqlConnection.Close();
+			}
 		}
 
 		//TODO: Implement Confirm Order button

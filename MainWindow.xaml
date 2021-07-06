@@ -171,8 +171,7 @@
                                     <TextBlock
                                     x:Name="tbOrderNumber"
                                     Margin="10"
-                                    FontSize="40"
-                                    Text="1325"/>
+                                    FontSize="40"/>
                                 </StackPanel>
                                 <StackPanel
                                 Orientation="Horizontal">

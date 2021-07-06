@@ -64,7 +64,7 @@
         </Style>
     </Window.Resources>
     <!--Window Ressource Style-->
-    
+
     <Border Background="Transparent">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -134,7 +134,6 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        
                     </StackPanel>
                 </TabItem>
                 <!--Order Product tab-->
@@ -163,61 +162,58 @@
                             Margin="10,10,0,10"
                             Background="#efbbcc">
                             <StackPanel Grid.Row="0" Grid.Column="0">
-                            <StackPanel Orientation="Horizontal">
-                                
-                                <TextBlock 
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock 
                                     FontSize="40"
                                     Margin="10"
                                     TextDecorations="Underline"
                                     Text="Order Number"/>
-                                <TextBlock
+                                    <TextBlock
                                     x:Name="tbOrderNumber"
-                                    FontWeight="Bold"
                                     Margin="10"
                                     FontSize="40"
                                     Text="1325"/>
-                            </StackPanel>
-                            <StackPanel
+                                </StackPanel>
+                                <StackPanel
                                 Orientation="Horizontal">
-                                <TextBlock
-                                    FontSize="40"
+                                    <TextBlock
+                                    FontSize="35"
                                     Margin="10"
                                     TextDecorations="Underline"
-                                    Text="PROVIDER:"
-                                    FontWeight="Bold"/>
-                                <ComboBox 
+                                    Text="PROVIDER:"/>
+                                    <ComboBox 
                                     Margin="10"
                                     Width="420"
                                     FontSize="30"
                                     x:Name="cbProvider">
-                                    <!--<ComboBox.ItemTemplate>
+                                        <!--<ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                --><!--<TextBlock Text="{Binding Name}" />--><!--
+                                                -->
+                                        <!--<TextBlock Text="{Binding Name}" />-->
+                                        <!--
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>-->
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel
                                 Orientation="Horizontal">
-                                <TextBlock
-                                    FontSize="40"
+                                    <TextBlock
+                                    FontSize="35"
                                     Margin="10"
                                     TextDecorations="Underline"
-                                    Text="DATE:"
-                                    FontWeight="Bold"/>
-                                <DatePicker 
+                                    Text="DATE:"/>
+                                    <DatePicker x:Name="dpOrder" 
                                     HorizontalContentAlignment="Center"
                                     SelectedDate="01-01-21"
                                     SelectedDateFormat="Long"
                                     BorderBrush="WhiteSmoke"
-                                    FontSize="38"
+                                    FontSize="30"
                                     Width="420"
                                     Margin="10" />
+                                </StackPanel>
                             </StackPanel>
-                            
-                        </StackPanel>
                         </Border>
                         <Border
                             Background="#efbbcc"
@@ -225,24 +221,21 @@
                             Margin="0,10,10,10"
                             Grid.Column="1">
                             <Button 
-                            
-                            Height="70"
-                            Width="260"
-                            FontWeight="Bold"
-                            HorizontalAlignment="Right"
-                            FontSize="28"
-                            Style="{StaticResource ConfirmBtnStyle}"
-                            Content="CONFIRM ORDER"
-                            x:Name="confirmOrderbtn"/>
+                                Height="70"
+                                Width="260"
+                                Click="confirmOrderbtn_Click"
+                                FontWeight="Bold"
+                                HorizontalAlignment="Right"
+                                FontSize="28"
+                                Style="{StaticResource ConfirmBtnStyle}"
+                                Content="CONFIRM ORDER"
+                                x:Name="confirmOrderbtn"/>
                         </Border>
-                        
-    
-
                         <Border
                             Grid.Row="1"
                             CornerRadius="30"
                             Background="#F4938C"
-                            Margin="150,50,40,0">
+                            Margin="150,20,40,0">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="25" 
@@ -258,11 +251,10 @@
                                         Text="Total Price"/>
                                 </StackPanel>
                                 <ListView
-                                    Height="350"
+                                    Height="380"
                                 x:Name="lvProductToOrder"
                                 Background="pink"
                                 Margin="10">
-
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <DockPanel LastChildFill="True">
@@ -293,7 +285,6 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackPanel>
-                            
                         </Border>
                         <Border
                             Background="#dea5a4"
@@ -346,17 +337,13 @@
                             Grid.ColumnSpan="2"
                             Grid.Row="3">
                             <Button
-                            
                             Click="AddProduct_Click"
                             Style="{StaticResource AddProductBtnStyle}"
                             FontSize="30"
                             Height="75"
                             Width="200">Add Product</Button>
                         </Border>
-                        
-
                     </Grid>
-
                 </TabItem>
                 <!--Rgister Delivery Tab-->
                 <TabItem>
@@ -390,10 +377,8 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackPanel>
-
                 </TabItem>
             </TabControl>
         </Grid>
     </Border>
-    
 </Window>

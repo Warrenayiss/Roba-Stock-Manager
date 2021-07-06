@@ -44,6 +44,8 @@ namespace Roba_Stock_Manager
 
 			lvProductToOrder.ItemsSource = productsToOrder;
 
+			dpOrder.SelectedDate = DateTime.Now;
+
 			ShowInventory();
 			ShowProductCb();
 			ShowProvider();
@@ -141,7 +143,7 @@ namespace Roba_Stock_Manager
 			foreach (Product product in productsToOrder)
 			{
 
-				string query = "select OderPrice from Product where Name = @productName";
+				string query = "select OderPrice, Id from Product where Name = @productName;";
 				SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
 				SqlDataReader sqlDataReader = null;
@@ -153,6 +155,7 @@ namespace Roba_Stock_Manager
 					sqlDataReader = sqlCommand.ExecuteReader();
 					while (sqlDataReader.Read())
 					{
+						product.Id = (int)sqlDataReader["Id"];
 						product.UnitPrice = (int)sqlDataReader["OderPrice"];
 						product.TotalPrice = product.UnitPrice * product.Quantity;
 						orderPrice += product.TotalPrice;
@@ -171,6 +174,90 @@ namespace Roba_Stock_Manager
 				}
 			}
 			tbPriceOfOrder.Text = orderPrice.ToString() + " cfa";
+		}
+
+		private void confirmOrderbtn_Click(object sender, RoutedEventArgs e)
+		{
+			int numberOfProduct = productsToOrder.Count();
+			DataRowView drv = (DataRowView)cbProvider.SelectedItem;
+			
+			string provider = drv["Name"].ToString();
+			DateTime dateOrder = dpOrder.DisplayDate.Date;
+			Int32 orderId = 0;
+			//Getting providerId
+			int providerId = 0;
+
+			string query = "select Id from Provider where Name = @providerName";
+			SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+
+			SqlDataReader sqlDataReader = null;
+
+			try
+			{
+				sqlConnection.Open();
+				sqlCommand.Parameters.AddWithValue("@providerName", provider);
+				sqlDataReader = sqlCommand.ExecuteReader();
+				while (sqlDataReader.Read())
+				{
+					providerId = (int)sqlDataReader["Id"];
+				}
+
+			}
+			finally
+			{
+				if (sqlDataReader != null)
+				{
+					sqlDataReader.Close();
+				}
+				if (sqlConnection != null)
+				{
+					sqlConnection.Close();
+				}
+			}
+			//Put the Order Data in Database
+			try
+			{
+				string queryAddOrder = "insert into \"Order\"(Date, NumberOfProduct, ProviderId)  OUTPUT INSERTED.ID values (@date, @nbOfProduct, @providerId)";
+				SqlCommand sqlCommandOrder = new SqlCommand(queryAddOrder, sqlConnection);
+				sqlConnection.Open();
+				sqlCommandOrder.Parameters.AddWithValue("@date", dateOrder);
+				sqlCommandOrder.Parameters.AddWithValue("@nbOfProduct", numberOfProduct);
+				sqlCommandOrder.Parameters.AddWithValue("@providerId", providerId);
+				orderId = (int)sqlCommandOrder.ExecuteScalar();
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show(err.ToString());
+			}
+			finally
+			{
+				sqlConnection.Close();
+			}
+
+			foreach (Product product in productsToOrder)
+			{
+				try
+				{
+					string queryAddProductToOrder = "insert into OrderProductList(OrderId, ProductId, Quantity) values (@orderId, @productId, @quantity)";
+					SqlCommand sqlCommandProductToOrder = new SqlCommand(queryAddProductToOrder, sqlConnection);
+					sqlConnection.Open();
+					sqlCommandProductToOrder.Parameters.AddWithValue("@orderId", orderId);
+					sqlCommandProductToOrder.Parameters.AddWithValue("@productId", product.Id);
+					sqlCommandProductToOrder.Parameters.AddWithValue("@quantity", product.Quantity);
+					sqlCommandProductToOrder.ExecuteScalar();
+				}
+				catch (Exception err)
+				{
+					MessageBox.Show(err.ToString());
+				}
+				finally
+				{
+					sqlConnection.Close();
+			}
+			}
+
+
+
 		}
 
 		//TODO: Implement Confirm Order button
